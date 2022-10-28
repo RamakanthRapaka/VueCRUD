@@ -8,7 +8,7 @@ export class ContactService {
     return axios.get(dataURL);
   }
 
-  static getAllContact(contactId) {
+  static getContact(contactId) {
     let dataURL = `${this.serverURL}/contacts/${contactId}`;
     return axios.get(dataURL);
   }
