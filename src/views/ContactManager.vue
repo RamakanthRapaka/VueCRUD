@@ -84,7 +84,7 @@
                 "
               >
                 <router-link
-                  to="/contacts/view/:contactId"
+                  :to="`/contacts/view/${contact.id}`"
                   class="btn btn-warning my-1"
                   ><i class="fa fa-eye"></i
                 ></router-link>
