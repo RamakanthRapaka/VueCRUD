@@ -14,45 +14,119 @@
   <div class="container mt-3">
     <div class="row">
       <div class="col-md-4">
-        <form>
+        <form @submit.prevent="submitCreate()">
           <div class="mb-2">
-            <input type="text" class="form-control" placeholder="Name" />
+            <input
+              v-model="contact.name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+            />
           </div>
           <div class="mb-2">
-            <input type="text" class="form-control" placeholder="Photo URL" />
+            <input
+              v-model="contact.photo"
+              type="text"
+              class="form-control"
+              placeholder="Photo URL"
+            />
           </div>
           <div class="mb-2">
-            <input type="text" class="form-control" placeholder="Email" />
+            <input
+              v-model="contact.email"
+              type="text"
+              class="form-control"
+              placeholder="Email"
+            />
           </div>
           <div class="mb-2">
-            <input type="text" class="form-control" placeholder="Mobile" />
+            <input
+              v-model="contact.mobile"
+              type="text"
+              class="form-control"
+              placeholder="Mobile"
+            />
           </div>
           <div class="mb-2">
-            <input type="text" class="form-control" placeholder="Company" />
+            <input
+              v-model="contact.company"
+              type="text"
+              class="form-control"
+              placeholder="Company"
+            />
           </div>
           <div class="mb-2">
-            <input type="text" class="form-control" placeholder="Title" />
+            <input
+              v-model="contact.title"
+              type="text"
+              class="form-control"
+              placeholder="Title"
+            />
           </div>
           <div class="mb-2">
-            <select class="form-control">
+            <select
+              v-model="contact.groupId"
+              class="form-control"
+              v-if="groups.length > 0"
+            >
               <option value="">Select Group</option>
+              <option :value="group.id" v-for="group of groups" :key="group.id">
+                {{ group.name }}
+              </option>
             </select>
           </div>
           <div class="mb-2">
-              <input type="submit" class="btn btn-success" value="Create">
+            <input type="submit" class="btn btn-success" value="Create" />
           </div>
         </form>
       </div>
       <div class="col-md-4">
-       <img src="https://cdn-icons-png.flaticon.com/512/219/219986.png" alt="" class="contact-img">
+        <img :src="contact.photo" alt="" class="contact-img" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { ContactService } from "@/services/ContactService";
 export default {
   name: "AddContact",
+  data: function () {
+    return {
+      contact: {
+        name: "",
+        email: "",
+        photo: "",
+        mobile: "",
+        company: "",
+        title: "",
+        groupId: "",
+      },
+      groups: [],
+    };
+  },
+  methods: {
+    submitCreate: async function () {
+      try {
+        let response = ContactService.createContact(this.contact);
+        if (response) {
+          return this.$router.push("/");
+        } else {
+          return this.$router.push("/contacts/add");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  created: async function () {
+    try {
+      let response = await ContactService.getAllGroups();
+      this.groups = response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 </script>
 
