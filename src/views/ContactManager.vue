@@ -38,7 +38,7 @@
 
   <div v-if="loading">
     <div class="row">
-      <div class="col"><spinner></spinner></div>
+      <div class="col"><Spinner></Spinner></div>
     </div>
   </div>
 
@@ -107,7 +107,8 @@
 
 <script>
 import { ContactService } from "@/services/ContactService";
-import { Spinner } from "@/components/Spinner.vue";
+import { Spinner } from "@/components/Spinner";
+
 export default {
   name: "ContactManager",
   components: { Spinner },
