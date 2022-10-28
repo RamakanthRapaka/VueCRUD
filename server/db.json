@@ -1,16 +1,6 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "Elma Herring",
-      "company": "YouTube",
-      "email": "elmaherring@unq.com",
-      "title": "Youtuber",
-      "mobile": "9963034024",
-      "photo": "https://cdn-icons-png.flaticon.com/512/219/219986.png",
-      "groupId": 3
-    },
-    {
       "id": 2,
       "name": "Knapp Berry",
       "company": "YouTube",

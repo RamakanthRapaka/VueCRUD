@@ -24,7 +24,7 @@
             />
           </div>
           <div class="mb-2">
-            <input
+            <input required
               v-model="contact.photo"
               type="text"
               class="form-control"
@@ -32,7 +32,7 @@
             />
           </div>
           <div class="mb-2">
-            <input
+            <input required
               v-model="contact.email"
               type="text"
               class="form-control"
@@ -40,7 +40,7 @@
             />
           </div>
           <div class="mb-2">
-            <input
+            <input required
               v-model="contact.mobile"
               type="text"
               class="form-control"
@@ -48,7 +48,7 @@
             />
           </div>
           <div class="mb-2">
-            <input
+            <input required
               v-model="contact.company"
               type="text"
               class="form-control"
@@ -56,7 +56,7 @@
             />
           </div>
           <div class="mb-2">
-            <input
+            <input required
               v-model="contact.title"
               type="text"
               class="form-control"
@@ -64,7 +64,7 @@
             />
           </div>
           <div class="mb-2">
-            <select
+            <select required
               v-model="contact.groupId"
               class="form-control"
               v-if="groups.length > 0"
