@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export class ContactService {
-  static serverURL = "http://localhost:9000/contacts";
+  static serverURL = "http://localhost:9000";
 
   static getAllContacts() {
     let dataURL = `${this.serverURL}/contacts`;
@@ -33,7 +33,7 @@ export class ContactService {
     return axios.get(dataURL);
   }
 
-  static getGroup(groupId) {
+  static getGroup(contact) {
     let groupId = contact.groupId;
     let dataURL = `${this.serverURL}/groups/${groupId}`;
     return axios.get(dataURL);
