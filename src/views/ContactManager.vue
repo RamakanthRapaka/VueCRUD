@@ -14,12 +14,12 @@
           asperiores, ab ipsam dicta dolor aspernatur ea. Sequi expedita iure
           saepe tenetur enim.
         </p>
-        <form @submit.prevent="searchContactByName(contactName)">
+        <form>
           <div class="row">
             <div class="col-md-6">
               <div class="row">
                 <div class="col">
-                  <input
+                  <input v-on:keyup="searchContactByName(contactName)"
                     v-model="contactName"
                     type="text"
                     class="form-control"
