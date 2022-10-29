@@ -14,19 +14,20 @@
           asperiores, ab ipsam dicta dolor aspernatur ea. Sequi expedita iure
           saepe tenetur enim.
         </p>
-        <form>
+        <form @submit.prevent="searchContactByName(contactName)">
           <div class="row">
             <div class="col-md-6">
               <div class="row">
                 <div class="col">
                   <input
+                    v-model="contactName"
                     type="text"
                     class="form-control"
                     placeholder="Search Name"
                   />
                 </div>
                 <div class="col">
-                  <input type="submit" class="btn btn-outline-dark" />
+                  <button class="btn btn-outline-dark">Search</button>
                 </div>
               </div>
             </div>
@@ -120,6 +121,7 @@ export default {
       loading: false,
       contacts: [],
       errorMessage: null,
+      contactName: null,
     };
   },
   created: async function () {
@@ -142,6 +144,23 @@ export default {
           this.loading = true;
           let response = await ContactService.getAllContacts();
           this.contacts = response.data;
+          this.loading = false;
+        }
+      } catch (error) {
+        this.errorMessage = error;
+        console.log(error);
+      }
+    },
+    searchContactByName: async function (contactName) {
+      try {
+        let response = await ContactService.getContactByName(contactName);
+        if (response) {
+          this.loading = true;
+          this.contacts = response.data;
+          this.loading = false;
+        } else {
+          this.loading = true;
+          this.contacts = null;
           this.loading = false;
         }
       } catch (error) {

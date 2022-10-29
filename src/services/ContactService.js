@@ -13,6 +13,11 @@ export class ContactService {
     return axios.get(dataURL);
   }
 
+  static getContactByName(contactName) {
+    let dataURL = `${this.serverURL}/contacts/?name_like=${contactName}`;
+    return axios.get(dataURL);
+  }
+
   static createContact(contact) {
     let dataURL = `${this.serverURL}/contacts/`;
     return axios.post(dataURL, contact);
